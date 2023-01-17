@@ -1,4 +1,4 @@
-# Quil; - CTFS
+# Quill - CTFS (Solved)
 
 ### Sample Hardhat Project
 

